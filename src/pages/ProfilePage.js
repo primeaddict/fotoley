@@ -59,16 +59,13 @@ const Profile = (props) => {
     useEffect(() => {
         setUserDataLocal(userData);
         setupImages(userData.vendor_media);
-        setupPostData();
     }, [userData])
 
 
     const [rating] = useState(Math.floor(Math.random() * (5 - 0 + 1)) + 0);
 
 
-    const setupPostData = () => {
-
-    }
+    
 
     tempData = [
         { data: post_count, name: 'Collections' },
@@ -77,7 +74,6 @@ const Profile = (props) => {
     ]
 
     const TempProfileDetails = () => {
-        console.log(tempData);
         if (tempData !== undefined) {
             return tempData.map((element, index) => {
                 return (
