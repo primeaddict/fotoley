@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/fotoley-test-by-Harsh08091996/static/css/main.1c77f5db.chunk.css",
-    "main.js": "/fotoley-test-by-Harsh08091996/static/js/main.652e31ee.chunk.js",
-    "main.js.map": "/fotoley-test-by-Harsh08091996/static/js/main.652e31ee.chunk.js.map",
+    "main.js": "/fotoley-test-by-Harsh08091996/static/js/main.2a4f78e0.chunk.js",
+    "main.js.map": "/fotoley-test-by-Harsh08091996/static/js/main.2a4f78e0.chunk.js.map",
     "runtime-main.js": "/fotoley-test-by-Harsh08091996/static/js/runtime-main.a6bfd9e5.js",
     "runtime-main.js.map": "/fotoley-test-by-Harsh08091996/static/js/runtime-main.a6bfd9e5.js.map",
     "static/js/2.c9712b53.chunk.js": "/fotoley-test-by-Harsh08091996/static/js/2.c9712b53.chunk.js",
@@ -16,6 +16,6 @@
     "static/js/runtime-main.a6bfd9e5.js",
     "static/js/2.c9712b53.chunk.js",
     "static/css/main.1c77f5db.chunk.css",
-    "static/js/main.652e31ee.chunk.js"
+    "static/js/main.2a4f78e0.chunk.js"
   ]
 }
