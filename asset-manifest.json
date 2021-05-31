@@ -1,20 +1,20 @@
 {
   "files": {
     "main.css": "/fotoley/static/css/main.1c77f5db.chunk.css",
-    "main.js": "/fotoley/static/js/main.62c94d7b.chunk.js",
-    "main.js.map": "/fotoley/static/js/main.62c94d7b.chunk.js.map",
+    "main.js": "/fotoley/static/js/main.030f0e06.chunk.js",
+    "main.js.map": "/fotoley/static/js/main.030f0e06.chunk.js.map",
     "runtime-main.js": "/fotoley/static/js/runtime-main.2ef5cff0.js",
     "runtime-main.js.map": "/fotoley/static/js/runtime-main.2ef5cff0.js.map",
-    "static/js/2.b0ee1505.chunk.js": "/fotoley/static/js/2.b0ee1505.chunk.js",
-    "static/js/2.b0ee1505.chunk.js.map": "/fotoley/static/js/2.b0ee1505.chunk.js.map",
+    "static/js/2.c6c26798.chunk.js": "/fotoley/static/js/2.c6c26798.chunk.js",
+    "static/js/2.c6c26798.chunk.js.map": "/fotoley/static/js/2.c6c26798.chunk.js.map",
     "index.html": "/fotoley/index.html",
     "static/css/main.1c77f5db.chunk.css.map": "/fotoley/static/css/main.1c77f5db.chunk.css.map",
-    "static/js/2.b0ee1505.chunk.js.LICENSE.txt": "/fotoley/static/js/2.b0ee1505.chunk.js.LICENSE.txt"
+    "static/js/2.c6c26798.chunk.js.LICENSE.txt": "/fotoley/static/js/2.c6c26798.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.2ef5cff0.js",
-    "static/js/2.b0ee1505.chunk.js",
+    "static/js/2.c6c26798.chunk.js",
     "static/css/main.1c77f5db.chunk.css",
-    "static/js/main.62c94d7b.chunk.js"
+    "static/js/main.030f0e06.chunk.js"
   ]
 }
