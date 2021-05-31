@@ -36,6 +36,9 @@ export const device = {
     desktopL: `(max-width: ${size.desktop})`
 };
 
+let tempData;
+
+
 const Profile = (props) => {
     const { artist_type_url, city_url, vendor_page_url } = props.match.params;
 
@@ -43,7 +46,7 @@ const Profile = (props) => {
 
     const [userImagesLocal, setUserImagesLocal] = useState([]);
     const [userDataLocal, setUserDataLocal] = useState(userData);
-    const { vendor_name, vendor_avatar, vendor_timeline_pic, artist_type, city_name, country_code, vendor_reviews, vendor_about, post_count, vendor_media } = userDataLocal;
+    const { vendor_name, vendor_avatar, vendor_timeline_pic, artist_type, city_name, country_code, vendor_reviews, vendor_about, post_count, vendor_media, vendor_followers, vendor_following } = userDataLocal;
 
     useEffect(() => {
         getUser({ artist_type_url, city_url, vendor_page_url }, (result) => {
@@ -56,35 +59,42 @@ const Profile = (props) => {
     useEffect(() => {
         setUserDataLocal(userData);
         setupImages(userData.vendor_media);
+        setupPostData();
     }, [userData])
 
 
     const [rating] = useState(Math.floor(Math.random() * (5 - 0 + 1)) + 0);
 
 
-    //TODO vendor count, foll, foll
-    const tempData = [
-        { data: '52', name: 'Collections' },
-        { data: '1321', name: 'Followers' },
-        { data: '20K', name: 'Following' },
+    const setupPostData = () => {
+
+    }
+
+    tempData = [
+        { data: post_count, name: 'Collections' },
+        { data: vendor_followers, name: 'Followers' },
+        { data: vendor_following, name: 'Following' },
     ]
 
     const TempProfileDetails = () => {
-        return tempData.map((element, index) => {
-            return (
-                <DataDiv key={index}>
-                    <Data>
-                        {element.data}
-                    </Data>
-                    <DataName>
-                        {element.name}
-                    </DataName>
-                </DataDiv>
-            )
-        })
+        console.log(tempData);
+        if (tempData !== undefined) {
+            return tempData.map((element, index) => {
+                return (
+                    <DataDiv key={index}>
+                        <Data>
+                            {element.data}
+                        </Data>
+                        <DataName>
+                            {element.name}
+                        </DataName>
+                    </DataDiv>
+                )
+            })
+        } else {
+            <div></div>
+        }
     }
-
-
 
     const setupImages = (imagesArr) => {
 
@@ -110,7 +120,6 @@ const Profile = (props) => {
         }
     }
 
-
     const ReviewSection = () => {
         if (vendor_reviews === undefined || vendor_reviews.length === 0) return <></>
         return (
@@ -132,7 +141,6 @@ const Profile = (props) => {
             </Accordion>
         )
     }
-
 
     return (
         <MainContainer>

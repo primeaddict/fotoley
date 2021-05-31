@@ -55,7 +55,8 @@ const Landing = ({ history }) => {
                         placeholder={placeHolder}
                         minLength={2}
                         value={query}
-                        debounceTimeout={800}
+                        debounceTimeout={300}
+                        autoComplete="off"
                         onChange={event => setQuery(event.target.value)}
                         onKeyDown={handleKeyDown}
                     />
