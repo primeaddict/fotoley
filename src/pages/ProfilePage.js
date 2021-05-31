@@ -13,6 +13,7 @@ import KeyboardBackspaceIcon from '@material-ui/icons/KeyboardBackspace';
 
 import Loading from '../pages/Loading'
 import { Helmet } from 'react-helmet';
+import BGImage from '../assets/images/bg.jpg'
 
 const size = {
     mobileS: '320px',
@@ -171,7 +172,11 @@ const Profile = (props) => {
 
                     <RightProfileSection>
                         <TopSection>
-                            <TopImage src={vendor_timeline_pic} alt='loading...' />
+                            <TopImage
+                                src={vendor_timeline_pic}
+                                alt='loading...'
+                                onError={(e) => e.target.src = BGImage}
+                            />
                         </TopSection>
                         <BottomSection>
                             <GallaryDiv>
