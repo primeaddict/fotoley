@@ -1,6 +1,6 @@
 /* eslint-disable array-callback-return */
 /* eslint-disable react-hooks/exhaustive-deps */
-import { Accordion, AccordionDetails, AccordionSummary, Avatar, Typography } from '@material-ui/core';
+import { Accordion, AccordionDetails, AccordionSummary, Avatar, IconButton, Typography } from '@material-ui/core';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import { Rating } from '@material-ui/lab';
 import React, { useContext, useEffect, useState } from 'react'
@@ -9,44 +9,36 @@ import styled from 'styled-components';
 import RatingSection from '../component/RatingSection';
 
 import AppContext from '../service/app/AppContext';
+import KeyboardBackspaceIcon from '@material-ui/icons/KeyboardBackspace';
 
+import Loading from '../pages/Loading'
+import { Helmet } from 'react-helmet';
 
-const tempPhotos = [
-    {
-        src: 'https://images.unsplash.com/photo-1613390792897-aa0c06a52332?ixid=MnwxMjA3fDB8MXxzZWFyY2h8MXx8YXJjaGljdHVyZXxlbnwwfHx8fDE2MjA4OTkxOTU&ixlib=rb-1.2.1',
-        width: 3,
-        height: 4
-    },
-    {
-        src: 'https://images.unsplash.com/photo-1614115866447-c9a299154650?ixid=MnwxMjA3fDB8MXxzZWFyY2h8MTB8fGFyY2hpY3R1cmV8ZW58MHx8fHwxNjIwODk5MTk1&ixlib=rb-1.2.1',
-        width: 3,
-        height: 2
-    }, {
-        src: 'https://images.unsplash.com/photo-1609417006671-091090cf6af1?ixid=MnwxMjA3fDB8MXxzZWFyY2h8NHx8YXJjaGljdHVyZXxlbnwwfHx8fDE2MjA4OTkxOTU&ixlib=rb-1.2.1',
-        width: 1,
-        height: 1
-    }, {
-        src: 'https://images.unsplash.com/photo-1613258488197-04297077fe10?ixid=MnwxMjA3fDB8MXxzZWFyY2h8NXx8YXJjaGljdHVyZXxlbnwwfHx8fDE2MjA4OTkxOTU&ixlib=rb-1.2.1',
-        width: 1,
-        height: 1
-    }, {
-        src: 'https://images.unsplash.com/photo-1611444713509-13551307f623?ixid=MnwxMjA3fDB8MXxzZWFyY2h8Nnx8YXJjaGljdHVyZXxlbnwwfHx8fDE2MjA4OTkxOTU&ixlib=rb-1.2.1',
-        width: 1,
-        height: 1
-    }, {
-        src: 'https://images.unsplash.com/photo-1610824224317-ac64e52481c7?ixid=MnwxMjA3fDB8MXxzZWFyY2h8N3x8YXJjaGljdHVyZXxlbnwwfHx8fDE2MjA4OTkxOTU&ixlib=rb-1.2.1',
-        width: 1,
-        height: 1
-    }, {
-        src: 'https://images.unsplash.com/photo-1618397746666-63405ce5d015?ixid=MnwxMjA3fDB8MXxzZWFyY2h8OHx8YXJjaGljdHVyZXxlbnwwfHx8fDE2MjA4OTkxOTU&ixlib=rb-1.2.1',
-        width: 1,
-        height: 1
-    }
-];
+const size = {
+    mobileS: '320px',
+    mobileM: '375px',
+    mobileL: '425px',
+    tablet: '768px',
+    laptop: '1024px',
+    laptopL: '1440px',
+    desktop: '2560px'
+}
+
+export const device = {
+    mobileS: `(max-width: ${size.mobileS})`,
+    mobileM: `(max-width: ${size.mobileM})`,
+    mobileL: `(max-width: ${size.mobileL})`,
+    tablet: `(max-width: ${size.tablet})`,
+    laptop: `(max-width: ${size.laptop})`,
+    laptopL: `(max-width: ${size.laptopL})`,
+    desktop: `(max-width: ${size.desktop})`,
+    desktopL: `(max-width: ${size.desktop})`
+};
+
 const Profile = (props) => {
     const { artist_type_url, city_url, vendor_page_url } = props.match.params;
 
-    const { userData, getUser } = useContext(AppContext);
+    const { userData, getUser, loading } = useContext(AppContext);
 
     const [userImagesLocal, setUserImagesLocal] = useState([]);
     const [userDataLocal, setUserDataLocal] = useState(userData);
@@ -54,7 +46,7 @@ const Profile = (props) => {
 
     useEffect(() => {
         getUser({ artist_type_url, city_url, vendor_page_url }, (result) => {
-            if (!result) props.history.replace('/');
+            if (!result) props.history.push('/');
         })
 
         setUserDataLocal(userData);
@@ -143,58 +135,84 @@ const Profile = (props) => {
 
     return (
         <MainContainer>
-            <Container>
-                <LeftProfileSection>
-                    <PhotoAndRatting>
-                        <ProfilePhoto
-                            src={vendor_avatar}
-                            style={{ height: '120px', width: '120px' }} />
-                        <ProfileRating name='rating' precision={0.5} value={rating} readOnly />
-                    </PhotoAndRatting>
-                    <ProfileDetails >
-                        <ProfilePersonal>
-                            <ProfileName>{vendor_name}</ProfileName>
-                            <ProfileType>{artist_type}</ProfileType>
-                            <ProfileLocation>{city_name} - {country_code}</ProfileLocation>
-                        </ProfilePersonal>
-                        <ProfileInfo>
-                            <TempProfileDetails />
-                        </ProfileInfo>
-                    </ProfileDetails>
-                </LeftProfileSection>
+            {loading === true ?
+                <Loading />
+                :
+                <Container>
+                    <Helmet>
+                        <title>{`${vendor_name} | ${artist_type} | ${country_code}`}</title>
+                    </Helmet>
+                    <CrossButton onClick={() => { props.history.push('/') }}>
+                        <IconButton style={{ boxShadow: '2px 3px 5px whitesmoke', padding: '0px', margin: '5px' }}>
+                            <KeyboardBackspaceIcon />
+                        </IconButton>
+                    </CrossButton>
+                    <NameForTab>
+                        <ProfileName>{vendor_name}</ProfileName>
+                    </NameForTab>
+                    <LeftProfileSection>
+                        <PhotoAndRatting>
+                            <ProfilePhoto
+                                src={vendor_avatar}
+                                style={{ height: '120px', width: '120px' }} />
+                            <ProfileRating name='rating' precision={0.5} value={rating} readOnly />
+                        </PhotoAndRatting>
+                        <ProfileDetails >
+                            <ProfilePersonal>
+                                <ProfileName>{vendor_name}</ProfileName>
+                                <ProfileType>{artist_type}</ProfileType>
+                                <ProfileLocation>{city_name} - {country_code}</ProfileLocation>
+                            </ProfilePersonal>
+                            <ProfileInfo>
+                                <TempProfileDetails />
+                            </ProfileInfo>
+                        </ProfileDetails>
+                    </LeftProfileSection>
 
-                <RightProfileSection>
-                    <TopSection>
-                        <TopImage src={vendor_timeline_pic} alt='loading...' />
-                    </TopSection>
-                    <BottomSection>
-                        <GallaryDiv>
-                            {(userImagesLocal !== undefined && userImagesLocal.length > 0) &&
-                                <Gallery margin={10} photos={userImagesLocal} direction={"column"} />
-                            }
-                        </GallaryDiv>
-                        <RatingAndBio>
-                            <BioDiv>
-                                <span style={{
-                                    padding: '10px 0px 10px 0px',
-                                    whiteSpace: 'nowrap',
-                                    textTransform: 'uppercase',
-                                    color: '#404040'
-                                }}>Biography</span>
-                                <span style={{ color: '#404040' }}   >{vendor_about}</span>
-                            </BioDiv>
-                            <ReviewDiv>
-                                <ReviewSection />
-                            </ReviewDiv>
-                        </RatingAndBio>
-                    </BottomSection>
-                </RightProfileSection>
+                    <RightProfileSection>
+                        <TopSection>
+                            <TopImage src={vendor_timeline_pic} alt='loading...' />
+                        </TopSection>
+                        <BottomSection>
+                            <GallaryDiv>
+                                {(userImagesLocal !== undefined && userImagesLocal.length > 0) &&
+                                    <Gallery margin={10} photos={userImagesLocal} direction={"column"} />
+                                }
+                            </GallaryDiv>
+                            <RatingAndBio>
+                                <BioDiv>
+                                    <span style={{
+                                        padding: '10px 0px 10px 0px',
+                                        whiteSpace: 'nowrap',
+                                        textTransform: 'uppercase',
+                                        color: '#404040'
+                                    }}>Biography</span>
+                                    <span style={{ color: '#404040' }}   >{vendor_about}</span>
+                                </BioDiv>
+                                <ReviewDiv>
+                                    <ReviewSection />
+                                </ReviewDiv>
+                            </RatingAndBio>
+                        </BottomSection>
+                    </RightProfileSection>
 
-            </Container>
+                </Container>
+            }
+
         </MainContainer >
     )
 }
 
+const CrossButton = styled.div`
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    margin: 8px;
+    height: 5vh;
+    width: 5vh;
+    cursor: pointer;
+    z-index:1;
+`;
 
 // RIGHT DESIGN
 const RightProfileSection = styled.div`
@@ -215,32 +233,64 @@ border-radius:25px;
 
 const TopSection = styled.div`
 flex:2;
-margin:10px`;
+margin:10px;`;
 
 const BottomSection = styled.div`
 flex:8;
 display:flex;
 flex-direction: row;
+
+@media ${device.tablet} { 
+flex-direction: column-reverse;
+}
+
 `;
 
 
 const GallaryDiv = styled.div`
 flex:6;
-width :100%;`
+width :100%;
+order:1;
+`
 
 const RatingAndBio = styled.div`
 flex:4;
 width :100%; 
-padding:20px;`
+padding:20px;
+order:2;
+
+@media ${device.tablet} { 
+padding: 0px;
+}
+`
 
 const BioDiv = styled.div`
 display:flex;
 flex-direction:column;
-padding:10px`;
+padding:10px;`;
+
 const ReviewDiv = styled.div``;
 
 
 // LEFT DESIGN
+
+const NameForTab = styled.div`
+width: 100%;
+position: fixed;
+background-color: whitesmoke;
+text-align: center;
+display: none;
+justify-content: center;
+align-items: center;
+height: 50px;
+z-index: 0;
+box-shadow: 1px 1px 2px whitesmoke;    
+
+@media ${device.tablet} { 
+display:fixed;
+}
+`;
+
 const ProfilePhoto = styled(Avatar)`flex:3;`;
 const ProfileRating = styled(Rating)``;
 const PhotoAndRatting = styled.div`
@@ -285,6 +335,10 @@ height:calc(100vh - 4rem);
 position:sticky;
 top: 0;
 padding: 2rem;
+@media ${device.tablet} { 
+padding: 5px;
+display:none;
+}
 `;
 
 
@@ -295,6 +349,10 @@ flex-direction:row;
 width: 95%;
 padding:0;
 margin:0;
+
+@media ${device.tablet} { 
+    width: 100%;
+}
 `;
 
 
@@ -330,5 +388,4 @@ justify-content:space-evenly;
 
 export default Profile
 
-// onHover={(rate) => document.getElementById('label-quiet-onrate').innerHTML = rate || ''} 
 

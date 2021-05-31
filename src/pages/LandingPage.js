@@ -3,6 +3,7 @@ import { IconButton, List, ListItem, ListItemText } from '@material-ui/core';
 import { Search } from '@material-ui/icons';
 import React, { useContext, useEffect, useState } from 'react'
 import { DebounceInput } from 'react-debounce-input';
+import { Helmet } from 'react-helmet';
 import styled from 'styled-components';
 
 import AppContext from '../service/app/AppContext';
@@ -44,6 +45,9 @@ const Landing = ({ history }) => {
     }
     return (
         <Container>
+            <Helmet>
+                <title>{'Search'}</title>
+            </Helmet>
             <SearchContainer>
                 <div style={{ width: '100%', display: 'flex', padding: '2px 10px' }}>
                     <SearchInput
@@ -115,7 +119,7 @@ border: 1px solid #7070704A;
 border-radius: 20px;
 font-size: 20px;
 width: 100%;
-max-width: 350px;
+max-width: 280px;
 padding : 2px; 
 position: absolute;
 top: 40%;

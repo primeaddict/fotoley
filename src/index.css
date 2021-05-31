@@ -28,9 +28,15 @@ span {
 .react-photo-gallery--gallery > div > img {
   border-radius: 20px !important;
   object-fit: cover;
-
 }
 
-.MuiAccordion-root.Mui-expanded, .MuiAccordion-root{
+.MuiAccordion-root.Mui-expanded,
+.MuiAccordion-root {
   box-shadow: none !important;
+}
+
+img {
+  flex: 1;
+  width: null;
+  height: null;
 }
