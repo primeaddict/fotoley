@@ -1,19 +1,19 @@
 {
   "files": {
-    "main.css": "/fotoley/static/css/main.1c1e76c5.chunk.css",
-    "main.js": "/fotoley/static/js/main.0c00f699.chunk.js",
-    "main.js.map": "/fotoley/static/js/main.0c00f699.chunk.js.map",
-    "runtime-main.js": "/fotoley/static/js/runtime-main.2ef5cff0.js",
-    "runtime-main.js.map": "/fotoley/static/js/runtime-main.2ef5cff0.js.map",
-    "static/js/2.34a54004.chunk.js": "/fotoley/static/js/2.34a54004.chunk.js",
-    "static/js/2.34a54004.chunk.js.map": "/fotoley/static/js/2.34a54004.chunk.js.map",
-    "index.html": "/fotoley/index.html",
-    "static/css/main.1c1e76c5.chunk.css.map": "/fotoley/static/css/main.1c1e76c5.chunk.css.map",
-    "static/js/2.34a54004.chunk.js.LICENSE.txt": "/fotoley/static/js/2.34a54004.chunk.js.LICENSE.txt"
+    "main.css": "./static/css/main.1c1e76c5.chunk.css",
+    "main.js": "./static/js/main.0c00f699.chunk.js",
+    "main.js.map": "./static/js/main.0c00f699.chunk.js.map",
+    "runtime-main.js": "./static/js/runtime-main.02981f01.js",
+    "runtime-main.js.map": "./static/js/runtime-main.02981f01.js.map",
+    "static/js/2.00813878.chunk.js": "./static/js/2.00813878.chunk.js",
+    "static/js/2.00813878.chunk.js.map": "./static/js/2.00813878.chunk.js.map",
+    "index.html": "./index.html",
+    "static/css/main.1c1e76c5.chunk.css.map": "./static/css/main.1c1e76c5.chunk.css.map",
+    "static/js/2.00813878.chunk.js.LICENSE.txt": "./static/js/2.00813878.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.2ef5cff0.js",
-    "static/js/2.34a54004.chunk.js",
+    "static/js/runtime-main.02981f01.js",
+    "static/js/2.00813878.chunk.js",
     "static/css/main.1c1e76c5.chunk.css",
     "static/js/main.0c00f699.chunk.js"
   ]
